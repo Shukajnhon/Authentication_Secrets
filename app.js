@@ -1,10 +1,12 @@
 //
+require('dotenv').config() // Environment variables from a .env file
 const express = require("express")
 const ejs = require("ejs")
 const mongoose = require("mongoose")
 const encrypt = require("mongoose-encryption")
 
 const app = express()
+// console.log(process.env.API_KEY)
 
 app.use(express.static("public"))
 app.use(express.urlencoded({ extended: true }))
@@ -15,6 +17,8 @@ app.set('view engine', 'ejs');
 // Port 3000
 const port = 3000;
 
+
+
 // Connect to mongodb
 mongoose.connect("mongodb://localhost:27017/userDB", { useNewUrlParser: true })
 
@@ -24,9 +28,8 @@ const userSchema = new mongoose.Schema({
     password: String
 })
 
-// Secret String Instead of Two Keys
-var secret = "Thisisourlittlesecret.";
-userSchema.plugin(encrypt, { secret: secret, encryptedFields: ['password'] })
+// Set plugin encryption
+userSchema.plugin(encrypt, { secret: process.env.SECRET, encryptedFields: ['password'] })
 
 
 // Model User

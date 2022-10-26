@@ -25,6 +25,7 @@ const userSchema = new mongoose.Schema({
 })
 
 // Secret String Instead of Two Keys
+// encryption
 var secret = "Thisisourlittlesecret.";
 userSchema.plugin(encrypt, { secret: secret, encryptedFields: ['password'] })
 
