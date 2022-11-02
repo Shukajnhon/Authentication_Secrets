@@ -4,7 +4,7 @@ const express = require("express")
 const ejs = require("ejs")
 const mongoose = require("mongoose")
 
-// Express-session
+// Express-session passport passport-local-mongoose
 const session = require('express-session')
 const passport = require('passport')
 const passportLocalMongoose = require('passport-local-mongoose')
